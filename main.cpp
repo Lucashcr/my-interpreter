@@ -3,6 +3,9 @@
 #include <iostream>
 #include <string>
 
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+
 #include "logger/logger.hpp"
 
 int main(int argc, char *argv[])
@@ -29,13 +32,18 @@ int main(int argc, char *argv[])
     }
 
     std::ifstream file(argv[1]);
-    std::string line;
-
-    logger.info("Conteúdo do arquivo:");
-    while (std::getline(file, line))
+    if (!file.is_open())
     {
-        std::cout << line << std::endl;
+        std::stringstream message;
+        message << "Não foi possível abrir o arquivo " << argv[1] << "!";
+        logger.error(message.str());
+        return 1;
     }
+
+    json program = json::parse(file);
+    // logger.debug("Executando programa " + program["expresion"].dump(4) + " ...");
+
+    logger.success("Programa executado com sucesso!");
 
     file.close();
 

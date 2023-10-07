@@ -33,3 +33,9 @@
 
 # Build path
 build/
+
+# Aliases file
+.aliases.sh
+
+# IDE configs
+.vscode/
