@@ -41,7 +41,8 @@ int main(int argc, char *argv[])
     }
 
     json program = json::parse(file);
-    // logger.debug("Executando programa " + program["expresion"].dump(4) + " ...");
+    std::string programName = program["name"];
+    logger.debug("Executando programa \"" + programName + "\" ...");
 
     logger.success("Programa executado com sucesso!");
 
