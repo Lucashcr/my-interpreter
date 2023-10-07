@@ -9,6 +9,7 @@ FetchContent_MakeAvailable(json)
 add_executable(
     Interp
     "logger/logger.cpp"
+    "eval/eval.cpp"
     main.cpp
 )
 

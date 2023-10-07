@@ -7,15 +7,12 @@
 using json = nlohmann::json;
 
 #include "logger/logger.hpp"
+#include "eval/eval.hpp"
 
 int main(int argc, char *argv[])
 {
     Logger logger = Logger("TESTE", Logger::Level::DEBUG);
     logger.info("Iniciando programa...");
-
-    std::stringstream message;
-    message << "Tentando abrir " << argv[1] << "!";
-    logger.info(message.str());
 
     if (!argv[1])
     {
@@ -31,6 +28,10 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    std::stringstream message;
+    message << "Abrindo \"" << argv[1] << "\"!";
+    logger.info(message.str());
+
     std::ifstream file(argv[1]);
     if (!file.is_open())
     {
@@ -42,7 +43,19 @@ int main(int argc, char *argv[])
 
     json program = json::parse(file);
     std::string programName = program["name"];
-    logger.debug("Executando programa \"" + programName + "\" ...");
+
+    try
+    {
+        eval(program["expression"]);
+    }
+    catch (std::exception &e)
+    {
+        std::stringstream message;
+        message << "Erro ao executar o programa \"" << programName << "\"!";
+        logger.error(message.str());
+        logger.error(e.what());
+        return 1;
+    }
 
     logger.success("Programa executado com sucesso!");
 
