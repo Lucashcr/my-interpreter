@@ -6,8 +6,8 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
-#include "logger/logger.hpp"
-#include "eval/eval.hpp"
+#include "logger/Logger.hpp"
+#include "nodes/Nodes.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -41,17 +41,17 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    json program = json::parse(file);
-    std::string programName = program["name"];
+    json j = json::parse(file);
 
     try
     {
-        eval(program["expression"]);
+        File program = File(j);
+        program.eval();
     }
     catch (std::exception &e)
     {
         std::stringstream message;
-        message << "Erro ao executar o programa \"" << programName << "\"!";
+        message << "Erro ao executar o programa \"" << j["name"] << "\"!";
         logger.error(message.str());
         logger.error(e.what());
         return 1;

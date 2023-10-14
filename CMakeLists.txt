@@ -8,8 +8,12 @@ FetchContent_MakeAvailable(json)
 
 add_executable(
     Interp
-    "logger/logger.cpp"
-    "eval/eval.cpp"
+    "logger/Logger.cpp"
+    "nodes/location/Location.cpp"
+    "nodes/file/File.cpp"
+    "nodes/term/Term.cpp"
+    "nodes/datatypes/str/Str.cpp"
+    "nodes/statements/print/Print.cpp"
     main.cpp
 )
 

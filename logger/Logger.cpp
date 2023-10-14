@@ -1,6 +1,6 @@
 #include <string>
 
-#include "logger.hpp"
+#include "Logger.hpp"
 
 const std::string Logger::BOLD = "\033[1m";
 const std::string Logger::OKCYAN = "\033[96m";

@@ -1,11 +1,8 @@
-#pragma once
+#ifndef __LOGGER_HPP__
+#define __LOGGER_HPP__
 
 #include <iostream>
 #include <string>
-
-namespace COLOR
-{
-} // namespace COLOR
 
 class Logger
 {
@@ -40,3 +37,5 @@ private:
     const std::string APP_NAME;
     const Level LEVEL;
 };
+
+#endif // __LOGGER_HPP__
