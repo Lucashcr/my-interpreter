@@ -18,7 +18,7 @@ private:
     Str value;
 
 public:
-    Print(json &print);
+    Print(json &j);
     void eval();
 };
 

@@ -2,12 +2,12 @@
 
 #include <iostream>
 
-Print::Print(json &print) : Term(print),
-                            value(Str(print["value"]))
+Print::Print(json &j) : Term(j),
+                        value(Str(j["value"]))
 {
 }
 
-// void Print::eval()
-// {
-//     std::cout << this->value << std::endl;
-// }
+void Print::eval()
+{
+    std::cout << this->value.eval() << std::endl;
+}

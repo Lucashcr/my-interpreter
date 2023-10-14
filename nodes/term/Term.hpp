@@ -14,7 +14,6 @@ private:
 
 public:
     Term(json &j);
-    ~Term();
     void eval();
 };
 
