@@ -1,9 +1,12 @@
 #include "Print.hpp"
 
+#include "../../datatypes/int/Int.hpp"
+
 #include <iostream>
 
 Print::Print(json &j) : Term(j),
-                        value(Str(j["value"]))
+                        value(j["value"]["kind"] == "Str" ? Str(j["value"]) : Int(j["value"]).toStr())
+// value(Str(j["value"]))
 {
 }
 

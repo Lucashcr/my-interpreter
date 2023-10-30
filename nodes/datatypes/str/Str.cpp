@@ -9,3 +9,8 @@ const std::string &Str::eval()
 {
     return this->value;
 }
+
+const std::string &Str::getKind()
+{
+    return this->kind;
+}

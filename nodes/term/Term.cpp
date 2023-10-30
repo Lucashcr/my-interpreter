@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "../datatypes/str/Str.hpp"
+#include "../datatypes/int/Int.hpp"
 #include "../statements/print/Print.hpp"
 
 Term::Term(json &j) : kind(j["kind"]),
@@ -10,7 +11,13 @@ Term::Term(json &j) : kind(j["kind"]),
 {
     if (this->kind == "Print")
     {
-        this->value = (void *)new Str(j["value"]);
+        if (j["value"]["kind"] == "Str")
+            this->value = (void *)new Str(j["value"]);
+        else if (j["value"]["kind"] == "Int")
+            this->value = (void *)new Int(j["value"]);
+        else
+            std::cout << "Unknown term kind: " << this->kind << std::endl;
+        // this->value = (void *)new Str(j["value"]);
     }
     else
     {
@@ -18,12 +25,32 @@ Term::Term(json &j) : kind(j["kind"]),
     }
 }
 
+std::string &Term::getKind()
+{
+    return this->kind;
+}
+
 void Term::eval()
 {
     if (this->kind == "Print")
     {
-        Str *str = (Str *)this->value;
-        std::cout << str->eval() << std::endl;
+        if (this->value == nullptr)
+        {
+            std::cout << "" << std::endl;
+            return;
+        }
+        else if (((Int *)this->value)->getKind() == "Int")
+        {
+            Int *integer = (Int *)this->value;
+            std::cout << integer->eval() << std::endl;
+            return;
+        }
+        else if (((Str *)this->value)->getKind() == "Str")
+        {
+            Str *str = (Str *)this->value;
+            std::cout << str->eval() << std::endl;
+            return;
+        }
     }
     else
     {

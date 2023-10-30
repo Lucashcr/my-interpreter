@@ -15,6 +15,9 @@ private:
 
 public:
     Location(json &j);
+    const int GetStart();
+    const int GetEnd();
+    const std::string &GetFilename();
 };
 
 #endif // __LOCATION_HPP__

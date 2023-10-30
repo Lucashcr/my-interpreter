@@ -5,16 +5,15 @@
 
 class Term
 {
-protected:
-    std::string kind;
-
 private:
+    std::string kind;
     Location location;
     void *value = nullptr;
 
 public:
     Term(json &j);
     void eval();
+    std::string &getKind();
 };
 
 #endif // __TERM_HPP__

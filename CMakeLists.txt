@@ -13,6 +13,7 @@ add_executable(
     "nodes/file/File.cpp"
     "nodes/term/Term.cpp"
     "nodes/datatypes/str/Str.cpp"
+    "nodes/datatypes/int/Int.cpp"
     "nodes/statements/print/Print.cpp"
     main.cpp
 )

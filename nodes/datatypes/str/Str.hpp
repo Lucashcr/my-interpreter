@@ -10,16 +10,15 @@ using json = nlohmann::json;
 
 class Str
 {
-protected:
-    const std::string kind = "Str";
-
 private:
+    const std::string kind = "Str";
     Location location;
     std::string value;
 
 public:
     Str() = default;
     Str(json &str);
+    const std::string &getKind();
     const std::string &eval();
 };
 
