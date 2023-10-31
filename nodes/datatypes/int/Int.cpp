@@ -1,7 +1,7 @@
 #include "Int.hpp"
 
-Int::Int(json &int_) : value(int_["value"]),
-                       location(Location(int_["location"]))
+Int::Int(json &int_) : Term(int_),
+                       value(int_["value"])
 {
 }
 
@@ -10,20 +10,19 @@ const int &Int::eval()
     return this->value;
 }
 
-const std::string &Int::getKind()
-{
-    return this->kind;
-}
-
 const Str Int::toStr()
 {
     json j;
     j["kind"] = "Str";
     j["value"] = std::to_string(this->value);
+
+    Location location = this->getLocation();
+
     json loc;
-    loc["start"] = this->location.GetStart();
-    loc["end"] = this->location.GetEnd();
-    loc["filename"] = this->location.GetFilename();
+    loc["start"] = location.GetStart();
+    loc["end"] = location.GetEnd();
+    loc["filename"] = location.GetFilename();
+
     j["location"] = loc;
     return Str(j);
 }

@@ -3,24 +3,19 @@
 
 #include <string>
 
+#include "../../term/Term.hpp"
 #include "../str/Str.hpp"
 
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
-#include "../../location/Location.hpp"
-
-class Int
+class Int final : Term
 {
 private:
-    const std::string kind = "Int";
-    Location location;
     int value;
 
 public:
-    Int() = default;
     Int(json &int_);
-    const std::string &getKind();
     const int &eval();
     const Str toStr();
 };

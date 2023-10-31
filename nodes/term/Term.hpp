@@ -6,14 +6,13 @@
 class Term
 {
 private:
-    std::string kind;
+    const std::string kind;
     Location location;
-    void *value = nullptr;
 
 public:
     Term(json &j);
-    void eval();
-    std::string &getKind();
+    const std::string &getKind() const;
+    const Location &getLocation() const;
 };
 
 #endif // __TERM_HPP__

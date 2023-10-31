@@ -9,7 +9,7 @@ class File final
 {
 private:
     std::string name;
-    Term expression;
+    void *expression;
     Location location;
 
 public:

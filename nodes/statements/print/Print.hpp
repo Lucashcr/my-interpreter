@@ -11,10 +11,8 @@ using json = nlohmann::json;
 
 class Print final : public Term
 {
-protected:
-    const std::string kind = "Print";
-
 private:
+    const std::string kind = "Print";
     Str value;
 
 public:

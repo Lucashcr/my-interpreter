@@ -6,19 +6,16 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
+#include "../../term/Term.hpp"
 #include "../../location/Location.hpp"
 
-class Str
+class Str final : Term
 {
 private:
-    const std::string kind = "Str";
-    Location location;
     std::string value;
 
 public:
-    Str() = default;
     Str(json &str);
-    const std::string &getKind();
     const std::string &eval();
 };
 
